@@ -1,14 +1,13 @@
 class Product
-  attr_reader :title
-  # attr_accessor :stock
+  attr_reader :title, :price
+  attr_accessor :stock
 
   @@products = []
 
   def initialize(options={})
     @title = options[:title]
-    # @price = options[:price]
-    # @brand = options[:brand]
-    # @stock = options[:stock]
+    @price = options[:price]
+    @stock = options[:stock]
     add_to_products
   end
 
@@ -16,13 +15,27 @@ class Product
     @@products
   end
 
-  # private
+  def self.find_by_title(title)
+    @@products.find {|p| p.title == title}
+  end
+
+  def in_stock?
+    @stock >0
+  end
+
+  def self.in_stock
+    @@products.select {|p| p.in_stock?}
+  end
+
+
+  private
 
   def add_to_products
-    if @@products.map { |product| product.title}.include? @title
-    @@products<<self
+    product=self.class.find_by_title(@title)
+    if product
+      raise DuplicateProductError, "'#{@title}' already exists."
     else
-      raise DuplicateProductError
+      @@products << self
     end
   end
 end
