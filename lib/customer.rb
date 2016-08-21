@@ -1,13 +1,30 @@
+class Customer
+  attr_reader :name
 
-# class Customer
+  @@customers = []
 
-#   @@customers = []
+  def initialize(options={})
+    @name = options[:name]
+    add_to_customers
+  end
 
-#   attr_reader :name
+  def self.all
+    @@customers
+  end
 
-#   def initialize(options={})
-#     @name = options[:name]
-#     add_to_customers
-#   end
+  def self.find_by_name(name)
+    @@customers.find {|c| c.name == name}
+  end
 
-# end
+  private
+
+  def add_to_customers
+    customer=self.class.find_by_name(@name)
+    if customer
+      raise DuplicateCustomerError, "'#{@name}' already exists!"
+    else
+      @@customers << self
+    end
+  end
+
+end
