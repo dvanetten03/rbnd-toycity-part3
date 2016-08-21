@@ -2,21 +2,22 @@ class Transaction
   attr_reader :id, :customer, :product
 
   @@id = 1
-  @@transactions = []
+  @@purchases = []
 
   def initialize(customer, product)
+    @id = @@id
     @@id += 1
     @customer = customer
     @product = product
     add_transaction
   end
 
-  # def self.all
-  #   @@transactions
-  # end
+  def self.all
+    @@purchases
+  end
 
-  def self.find(id)
-    @@all.find {|i| i.id == id}
+  def self.find(int)
+    @@purchases.find {|purchase| purchase.id = int}
   end
 
 
@@ -27,7 +28,7 @@ class Transaction
       raise OutOfStockError, "'#{@product.title}' is out of stock, please choose something else."
     else
       @product.stock -=1
-      @@transactions << self
+      @@purchases << self
     end
   end
 end
