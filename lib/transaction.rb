@@ -23,8 +23,7 @@ class Transaction
     end
   end
 
-  def purchase(product)
-  end
+
 
   private
 
