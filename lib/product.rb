@@ -1,5 +1,5 @@
 class Product
-  attr_reader :title, :price
+  attr_reader :title, :brand, :price
   attr_accessor :stock
 
   @@products = []
@@ -7,6 +7,7 @@ class Product
   def initialize(options={})
     @title = options[:title]
     @price = options[:price]
+    @brand = options[:brand]
     @stock = options[:stock]
     add_to_products
   end
@@ -19,6 +20,10 @@ class Product
     @@products.find {|p| p.title == title}
   end
 
+  def self.find_by_brand(brand)
+    @@products.find {|p| p.brand == brand}
+  end
+
   def in_stock?
     @stock >0
   end
@@ -29,6 +34,12 @@ class Product
 
 
   private
+
+  def low_stock
+    if @stock <=20
+      raise LowStockError, "'#{@title}' has less than 20 units left, you should reorder soon."
+    end
+  end
 
   def add_to_products
     product=self.class.find_by_title(@title)

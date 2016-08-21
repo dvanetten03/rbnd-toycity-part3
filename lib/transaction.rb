@@ -16,10 +16,15 @@ class Transaction
     @@purchases
   end
 
-  def self.find(int)
-    @@purchases.find {|purchase| purchase.id = int}
+  def self.find(id)
+    @@purchases.find {|t| t.id == id}
+    if id == nil
+      raise TransactionNotFoundError, "Transaction with id '#{id}' not found. Make sure you typed it in correctly."
+    end
   end
 
+  def purchase(product)
+  end
 
   private
 

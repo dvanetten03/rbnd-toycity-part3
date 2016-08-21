@@ -16,6 +16,7 @@ class Customer
     @@customers.find {|c| c.name == name}
   end
 
+
   private
 
   def add_to_customers

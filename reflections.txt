@@ -1,0 +1,9 @@
+Although it looks like I spent months on this project, I probably completed it in about 2 days. I had a long hiatus between when I started on it and when I was able to get back to my work.
+
+The most rewarding challenge I conquered was getting the darn transaction id to show up as 1.
+
+The two additional features I built were:
+  1. Showing that there was low stock; and
+  2. Finding the product by brand
+
+I still have so much room to grow. I tend to take a lot of notes, which I review when writing code. I would like to be able to get to the point where I'm just iterating through all the things I've learned without having to look at my notes.
